@@ -1,6 +1,8 @@
 import { USERS_COLLECTION } from './constants';
+import { admin } from './admin';
+const bcrypt = require('bcrypt');
 
-export const registerUser = async (req, res) => {
+export const registerUser = (req, res) => {
     const id = req.body.id;
     const password = req.body.password;
     const firstName = req.body.firstName;
@@ -12,9 +14,12 @@ export const registerUser = async (req, res) => {
         return;
     }
 
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
     const user = {
         id: id,
-        password: password,
+        password: hashedPassword,
         firstName: firstName,
         lastName: lastName,
         developerMetadata: developerMetadata,

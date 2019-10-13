@@ -1,6 +1,8 @@
 import { USERS_COLLECTION } from './constants';
+import { admin } from './admin';
+const bcrypt = require('bcrypt');
 
-export const loginUser = async (req, res) => {
+export const loginUser = (req, res) => {
     const id = req.body.id;
     const password = req.body.password;
 
@@ -17,8 +19,11 @@ export const loginUser = async (req, res) => {
         const lastName = result.get('lastName');
         const developerMetadata = result.get('developerMetadata');
 
-        if (userDocPassword != password) {
-            res.status(400).send('Invalid password');
+        const salt = bcrypt.genSaltSync(10);
+        const hashedPassword = bcrypt.hashSync(password, salt);
+
+        if (!bcrypt.compareSync(userDocPassword, hashedPassword)) {
+            res.status(401).send('Invalid password');
             return;
         }
 

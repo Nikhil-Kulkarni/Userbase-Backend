@@ -1,5 +1,5 @@
 import { USERS_COLLECTION, FRIENDS_COLLECTION } from './constants';
 
-export const getFriendRequests = async(req, res) => {
+export const getFriendRequests = (req, res) => {
 
 };
