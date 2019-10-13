@@ -6,10 +6,6 @@ import * as bcrypt from 'bcrypt';
 
 export class LoginHandler extends Callable {
 
-    constructor(client: typeof admin) {
-        super(client);
-    }
-
     run(req: functions.https.Request, res: functions.Response) {
         const id: string = req.body.id;
         const password: string = req.body.password;
@@ -19,7 +15,7 @@ export class LoginHandler extends Callable {
             return;
         }
 
-        const db: admin.firestore.Firestore = this.client.firestore();
+        const db: admin.firestore.Firestore = admin.firestore();
         db.collection(USERS_COLLECTION).doc(id).get()
         .then((result) => {
             const userDocPassword = result.get('password');
@@ -39,7 +35,7 @@ export class LoginHandler extends Callable {
                 developerMetadata
             };
     
-            this.client.auth().createCustomToken(id)
+            admin.auth().createCustomToken(id)
             .then(function(customToken) {
                 const response = {
                     token: customToken,

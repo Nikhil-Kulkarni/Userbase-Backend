@@ -11,14 +11,14 @@ import { SearchUsersHandler } from './SearchUsers';
 
 admin.initializeApp();
 
-const loginHandler = new LoginHandler(admin);
-const logoutHandler = new LogoutHandler(admin);
-const registerHandler = new RegisterHandler(admin);
-const fetchFriendsHandler = new FetchFriendsHandler(admin);
-const sendFriendRequestHandler = new SendFriendRequestHandler(admin);
-const acceptFriendRequestHandler = new AcceptFriendRequestHandler(admin);
-const getFriendRequestsHandler = new GetFriendRequestsHandler(admin);
-const searchUsersHandler = new SearchUsersHandler(admin);
+const loginHandler = new LoginHandler();
+const logoutHandler = new LogoutHandler();
+const registerHandler = new RegisterHandler();
+const fetchFriendsHandler = new FetchFriendsHandler();
+const sendFriendRequestHandler = new SendFriendRequestHandler();
+const acceptFriendRequestHandler = new AcceptFriendRequestHandler();
+const getFriendRequestsHandler = new GetFriendRequestsHandler();
+const searchUsersHandler = new SearchUsersHandler();
 
 export const loginUser = functions.https.onRequest(loginHandler.run);
 export const logout = functions.https.onRequest(logoutHandler.run);
