@@ -28,9 +28,9 @@ export class RegisterHandler extends Callable {
             developerMetadata,
         };
     
-        admin.auth().createCustomToken(id)
+        this.client.auth().createCustomToken(id)
         .then((customToken) => {
-            const db = admin.firestore();
+            const db = this.client.firestore();
             db.collection(USERS_COLLECTION).doc(id).set(user)
             .then((result) => {
                 const response = {

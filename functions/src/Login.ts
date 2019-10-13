@@ -19,7 +19,7 @@ export class LoginHandler extends Callable {
             return;
         }
 
-        const db: admin.firestore.Firestore = admin.firestore();
+        const db: admin.firestore.Firestore = this.client.firestore();
         db.collection(USERS_COLLECTION).doc(id).get()
         .then((result) => {
             const userDocPassword = result.get('password');
@@ -39,7 +39,7 @@ export class LoginHandler extends Callable {
                 developerMetadata
             };
     
-            admin.auth().createCustomToken(id)
+            this.client.auth().createCustomToken(id)
             .then(function(customToken) {
                 const response = {
                     token: customToken,
