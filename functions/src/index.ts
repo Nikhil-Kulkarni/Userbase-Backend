@@ -21,10 +21,10 @@ const getFriendRequestsHandler = new GetFriendRequestsHandler();
 const searchUsersHandler = new SearchUsersHandler();
 
 export const loginUser = functions.https.onRequest(loginHandler.run);
-export const logout = functions.https.onRequest(logoutHandler.run);
 export const registerUser = functions.https.onRequest(registerHandler.run);
-export const fetchFriends = functions.https.onRequest(fetchFriendsHandler.run);
 export const sendFriendRequest = functions.https.onRequest(sendFriendRequestHandler.run);
 export const acceptFriendRequest = functions.https.onRequest(acceptFriendRequestHandler.run);
+export const fetchFriends = functions.https.onRequest(fetchFriendsHandler.run);
 export const getFriendRequests = functions.https.onRequest(getFriendRequestsHandler.run);
 export const searchUsers = functions.https.onRequest(searchUsersHandler.run);
+export const logout = functions.https.onRequest(logoutHandler.run);
